@@ -1,3 +1,7 @@
+"""The script calcules the mean amount of the transactions
+   by customer in the different agency. MapReduce was used
+   to calcule this mean."""
+
 from mrjob.job import MRJob
 from mrjob.step import MRStep
 import statistics
@@ -10,7 +14,9 @@ class Mean_amount_agency(MRJob):
         ]
     
     def mapper_mean_agency(self, _, line):
-        agency_id,account_sender_name,country_sender,account_receiver_name,country_receiver,amount,payment_type,datetime_timestamp = line.split(',')
+        agency_id,account_sender_name,country_sender,\
+        account_receiver_name,country_receiver,\
+        amount,payment_type,datetime_timestamp = line.split(',')
         if amount != 'amount':
             if account_sender_name == account_receiver_name:
                 yield ([account_receiver_name, agency_id], int(amount))
