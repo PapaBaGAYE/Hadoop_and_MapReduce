@@ -1,3 +1,7 @@
+"""The script calcules the total amount of the sending transactions for each customer. 
+   MapReduce was used to calcule this mean."""
+
+
 from mrjob.job import MRJob
 from mrjob.step import MRStep
 
@@ -9,7 +13,10 @@ class Sum_transactions_sender(MRJob):
         ]
     
     def mapper_transactions(self, _, line):
-        agency_id,account_sender_name,country_sender,account_receiver_name,country_receiver,amount,payment_type,datetime_timestamp = line.split(',')
+        agency_id,account_sender_name,\
+        country_sender,account_receiver_name,\
+        country_receiver,amount,\
+        payment_type,datetime_timestamp = line.split(',')
         if amount != 'amount':
             yield (account_sender_name, int(amount))
     
