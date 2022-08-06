@@ -1,3 +1,7 @@
+"""The script calcules the total amount of the receiving transactions for each customer. 
+   MapReduce was used to calcule this mean."""
+
+
 from mrjob.job import MRJob
 from mrjob.step import MRStep
 
